@@ -16,7 +16,7 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // Replace every placeholder affiliate URL with your real tracking link.
-const affiliateUrl = "YOUR_AFFILIATE_LINK";
-document.querySelectorAll('a[href="YOUR_AFFILIATE_LINK"]').forEach(link => {
+const affiliateUrl = "https://refpa94452.com/L?tag=d_5938282m_98818c_&site=5938282&ad=98818";
+document.querySelectorAll('a[href="https://refpa94452.com/L?tag=d_5938282m_98818c_&site=5938282&ad=98818"]').forEach(link => {
   link.href = affiliateUrl;
 });
