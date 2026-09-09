@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BetOnGame Partners — affiliate partnership platform.">
+  <meta name="theme-color" content="#050607">
+  <title>BetOnGame Partners</title>
+
+  <style>
+    :root{
+      --bg:#050607;
+      --bg2:#080b0c;
+      --panel:#0c1011;
+      --panel2:#101516;
+      --line:rgba(255,255,255,.09);
+      --text:#f5f7f7;
+      --muted:#9ca7a8;
+      --cyan:#35e3cf;
+      --cyan2:#19cbb7;
+      --max:1180px;
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(53,227,207,.08), transparent 30%),
+        linear-gradient(180deg,#050607 0%,#070a0b 45%,#050607 100%);
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(5,6,7,.82);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      backdrop-filter:blur(18px);
+    }
+    .nav{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      min-width:0;
+    }
+    .brand img{
+      display:block;
+      width:190px;
+      height:auto;
+      max-height:62px;
+      object-fit:contain;
+      object-position:left center;
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:30px;
+      color:#dce2e2;
+      font-size:14px;
+      font-weight:600;
+    }
+    .nav-links a{transition:.2s ease}
+    .nav-links a:hover{color:var(--cyan)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 20px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      font-size:14px;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:#fff}
+    .btn-outline:hover{border-color:rgba(53,227,207,.55)}
+    .btn-primary{
+      background:var(--cyan);
+      border-color:var(--cyan);
+      color:#03100e;
+      box-shadow:0 10px 30px rgba(53,227,207,.12);
+    }
+    .btn-primary:hover{background:#52ead9}
+    .menu-btn{
+      display:none;
+      width:44px;height:44px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:#0b0f10;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:650px;
+      display:flex;
+      align-items:center;
+      padding:90px 0 80px;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:700px;height:700px;
+      left:50%;top:-300px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(53,227,207,.13),rgba(53,227,207,0) 68%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      gap:70px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      color:var(--cyan);
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+    .eyebrow:before{
+      content:"";
+      width:24px;height:1px;background:var(--cyan);
+    }
+    h1{
+      font-size:clamp(42px,6vw,76px);
+      line-height:.98;
+      letter-spacing:-.045em;
+      max-width:760px;
+      margin-bottom:25px;
+    }
+    .hero h1 span{color:var(--cyan)}
+    .hero-copy{
+      color:var(--muted);
+      font-size:18px;
+      max-width:610px;
+      margin-bottom:32px;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .hero-note{
+      margin-top:18px;
+      color:#697677;
+      font-size:12px;
+    }
+
+    .hero-card{
+      position:relative;
+      min-height:430px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01)),
+        #080b0c;
+      box-shadow:0 30px 100px rgba(0,0,0,.35);
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom,black,transparent 85%);
+    }
+    .ring{
+      position:absolute;
+      width:310px;height:310px;
+      left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      border:1px solid rgba(53,227,207,.18);
+      box-shadow:
+        0 0 0 35px rgba(53,227,207,.025),
+        0 0 80px rgba(53,227,207,.08);
+    }
+    .ring:after{
+      content:"";
+      position:absolute;
+      inset:42px;
+      border-radius:50%;
+      border:1px dashed rgba(53,227,207,.22);
+    }
+    .hero-badge{
+      position:absolute;
+      left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      width:190px;height:190px;
+      border-radius:50%;
+      background:#060809;
+      border:1px solid rgba(53,227,207,.34);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      box-shadow:0 0 70px rgba(53,227,207,.1);
+    }
+    .hero-badge strong{
+      display:block;
+      font-size:54px;
+      line-height:1;
+      color:var(--cyan);
+      letter-spacing:-.05em;
+    }
+    .hero-badge small{
+      display:block;
+      margin-top:8px;
+      color:#aeb8b8;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+    }
+    .floating-stat{
+      position:absolute;
+      padding:15px 18px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:13px;
+      background:rgba(8,11,12,.88);
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 40px rgba(0,0,0,.25);
+    }
+    .floating-stat b{display:block;font-size:20px}
+    .floating-stat span{font-size:11px;color:#7f8a8b}
+    .fs1{top:45px;left:30px}
+    .fs2{right:30px;bottom:50px}
+
+    /* Sections */
+    section{padding:105px 0}
+    .section-head{max-width:690px;margin-bottom:50px}
+    .section-label{
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      margin-bottom:12px;
+    }
+    h2{
+      font-size:clamp(32px,4vw,50px);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      margin-bottom:15px;
+    }
+    .section-head p{color:var(--muted);font-size:16px}
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:30px;
+      transition:.25s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(53,227,207,.25);
+    }
+    .icon{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      background:rgba(53,227,207,.09);
+      color:var(--cyan);
+      border:1px solid rgba(53,227,207,.16);
+      font-weight:900;
+      margin-bottom:22px;
+    }
+    .card h3{font-size:19px;margin-bottom:9px}
+    .card p{color:var(--muted);font-size:14px}
+
+    .stats{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:42px 0;
+    }
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+    .stat{text-align:center;padding:8px 15px}
+    .stat strong{
+      display:block;
+      color:#fff;
+      font-size:clamp(28px,4vw,44px);
+      line-height:1;
+      letter-spacing:-.04em;
+      margin-bottom:8px;
+    }
+    .stat span{color:#7f8b8c;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+
+    .earnings{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:55px;
+      align-items:center;
+    }
+    .earn-box{
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:38px;
+      background:
+        radial-gradient(circle at 100% 0%,rgba(53,227,207,.08),transparent 45%),
+        #090d0e;
+    }
+    .earn-number{
+      font-size:clamp(58px,8vw,100px);
+      font-weight:850;
+      line-height:.9;
+      letter-spacing:-.06em;
+      color:var(--cyan);
+      margin:10px 0 15px;
+    }
+    .earn-box p{color:var(--muted);font-size:14px}
+    .check-list{list-style:none;display:grid;gap:17px;margin-top:28px}
+    .check-list li{display:flex;gap:12px;color:#cbd2d2;font-size:14px}
+    .check-list li:before{
+      content:"✓";
+      flex:0 0 auto;
+      color:var(--cyan);
+      font-weight:900;
+    }
+
+    .news-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .news{
+      min-height:230px;
+      padding:30px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:#090d0e;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .news-date{font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.14em}
+    .news h3{font-size:24px;line-height:1.15;margin:12px 0}
+    .news p{color:var(--muted);font-size:14px}
+    .news-link{margin-top:22px;color:#fff;font-size:13px;font-weight:800}
+
+    .reviews{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .review{padding:28px}
+    .stars{color:var(--cyan);letter-spacing:2px;font-size:13px;margin-bottom:18px}
+    .review p{color:#c6cece;font-size:14px;line-height:1.75}
+    .reviewer{margin-top:24px;color:#fff;font-weight:750;font-size:13px}
+
+    .cta{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(53,227,207,.18);
+      border-radius:26px;
+      padding:60px;
+      background:
+        radial-gradient(circle at 80% 20%,rgba(53,227,207,.12),transparent 34%),
+        linear-gradient(135deg,#0b1112,#070909);
+    }
+    .cta h2{max-width:650px}
+    .cta p{max-width:620px;color:var(--muted);margin-bottom:28px}
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:40px 0 30px;
+      color:#768182;
+      font-size:12px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:30px;
+      align-items:start;
+    }
+    .footer-brand img{width:170px;display:block;margin-bottom:14px}
+    .footer-brand p{max-width:410px}
+    .footer-links{display:flex;gap:22px;flex-wrap:wrap}
+    .footer-links a:hover{color:#fff}
+    .copyright{margin-top:35px;padding-top:20px;border-top:1px solid rgba(255,255,255,.05)}
+
+    .cookie{
+      position:fixed;
+      z-index:2000;
+      left:20px;right:20px;bottom:20px;
+      max-width:720px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:16px 18px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(10,13,14,.96);
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+      backdrop-filter:blur(15px);
+    }
+    .cookie p{font-size:12px;color:#9aa5a6;flex:1}
+    .cookie button{
+      border:0;
+      border-radius:9px;
+      padding:10px 16px;
+      background:var(--cyan);
+      color:#03100e;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    @media (max-width:900px){
+      .nav-links,.nav-actions{display:none}
+      .menu-btn{display:block}
+      .mobile-nav{
+        display:none;
+        border-top:1px solid var(--line);
+        padding:16px 0 22px;
+      }
+      .mobile-nav.open{display:grid;gap:6px}
+      .mobile-nav a{padding:12px 0;color:#dfe5e5}
+      .mobile-nav .btn{width:100%;margin-top:5px}
+      .hero{min-height:auto;padding:75px 0 65px}
+      .hero-grid,.earnings{grid-template-columns:1fr;gap:45px}
+      .hero-card{min-height:390px}
+      .cards,.reviews{grid-template-columns:1fr 1fr}
+      .stats-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:620px){
+      .container{width:min(var(--max),calc(100% - 28px))}
+      .nav{min-height:72px}
+      .brand img{width:155px;max-height:52px}
+      section{padding:75px 0}
+      .hero{padding-top:60px}
+      h1{font-size:46px}
+      .hero-copy{font-size:16px}
+      .hero-card{min-height:350px}
+      .ring{width:250px;height:250px}
+      .hero-badge{width:155px;height:155px}
+      .hero-badge strong{font-size:43px}
+      .fs1{top:25px;left:15px}
+      .fs2{right:15px;bottom:25px}
+      .cards,.reviews,.news-grid{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .earn-box{padding:28px}
+      .cta{padding:35px 25px}
+      .footer-grid{grid-template-columns:1fr}
+      .cookie{left:12px;right:12px;bottom:12px;align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#top" aria-label="BetOnGame Partners home">
+          <img src="assets/header.png" alt="BetOnGame Partners">
+        </a>
+
+        <div class="nav-links">
+          <a href="#benefits">Benefits</a>
+          <a href="#earnings">Earnings</a>
+          <a href="#news">News</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <!-- Replace these placeholders with your own URLs -->
+          <a class="btn btn-outline" href="YOUR_LOGIN_URL_HERE">Login</a>
+          <a class="btn btn-primary" href="YOUR_REGISTER_URL_HERE">Register</a>
+        </div>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      </nav>
+
+      <div class="mobile-nav" id="mobileNav">
+        <a href="#benefits">Benefits</a>
+        <a href="#earnings">Earnings</a>
+        <a href="#news">News</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-outline" href="YOUR_LOGIN_URL_HERE">Login</a>
+        <a class="btn btn-primary" href="YOUR_REGISTER_URL_HERE">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">BetOnGame Partners</div>
+          <h1>Build partnerships.<br><span>Grow together.</span></h1>
+          <p class="hero-copy">
+            Introduce new customers to BetOnGame and build a long-term partnership
+            supported by competitive commissions, reliable reporting and dedicated assistance.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="YOUR_REGISTER_URL_HERE">Become a Partner</a>
+            <a class="btn btn-outline" href="#benefits">Explore Program</a>
+          </div>
+          <div class="hero-note">18+ • Terms and eligibility requirements apply.</div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="ring"></div>
+          <div class="hero-badge">
+            <div>
+              <strong>50%</strong>
+              <small>up to commission</small>
+            </div>
+          </div>
+          <div class="floating-stat fs1">
+            <b>24/7</b>
+            <span>Partner support</span>
+          </div>
+          <div class="floating-stat fs2">
+            <b>Real-time</b>
+            <span>Performance data</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Why partner with us</div>
+          <h2>A partnership built around performance.</h2>
+          <p>Everything you need to manage your traffic and develop a sustainable partnership.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">%</div>
+            <h3>Competitive commissions</h3>
+            <p>Access commission structures designed to reward quality customer acquisition and long-term performance.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">↗</div>
+            <h3>Detailed statistics</h3>
+            <p>Track key performance information through clear reporting so you can understand how your campaigns perform.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">◎</div>
+            <h3>Personal support</h3>
+            <p>Work with a dedicated affiliate contact for onboarding, campaign questions and partnership assistance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat"><strong>20K+</strong><span>Partners worldwide</span></div>
+        <div class="stat"><strong>1K+</strong><span>Promotional materials</span></div>
+        <div class="stat"><strong>49</strong><span>Supported languages</span></div>
+        <div class="stat"><strong>24h</strong><span>Quick approval</span></div>
+      </div>
+    </div>
+
+    <section id="earnings">
+      <div class="container earnings">
+        <div>
+          <div class="section-label">Partnership potential</div>
+          <h2>Turn your audience into a long-term business relationship.</h2>
+          <p class="section-head" style="margin:0;color:var(--muted);">
+            Build a partnership around measurable performance, transparent reporting and ongoing support.
+          </p>
+
+          <ul class="check-list">
+            <li>Competitive revenue-share opportunities</li>
+            <li>Weekly payout options subject to program terms</li>
+            <li>Reporting designed for performance tracking</li>
+            <li>Dedicated affiliate management</li>
+          </ul>
+        </div>
+
+        <div class="earn-box">
+          <div class="section-label">Program highlight</div>
+          <div class="earn-number">50%</div>
+          <p>Maximum advertised commission level. Actual terms, rates and eligibility can vary by agreement, GEO, traffic source and program conditions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Latest updates</div>
+          <h2>News &amp; promotions.</h2>
+          <p>Keep your partners and campaigns aligned with the latest program updates.</p>
+        </div>
+
+        <div class="news-grid">
+          <article class="news">
+            <div>
+              <div class="news-date">Program update</div>
+              <h3>Launch soon</h3>
+              <p>New opportunities and promotional updates can be published here for your partner network.</p>
+            </div>
+            <a class="news-link" href="#contact">Ask for details →</a>
+          </article>
+
+          <article class="news">
+            <div>
+              <div class="news-date">Partner resources</div>
+              <h3>Promotional materials</h3>
+              <p>Keep your campaigns organized with approved promotional resources and current partnership information.</p>
+            </div>
+            <a class="news-link" href="#contact">Contact manager →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">Partner feedback</div>
+          <h2>Designed for serious partnerships.</h2>
+          <p>A clean section for verified partner testimonials or approved reviews.</p>
+        </div>
+
+        <div class="reviews">
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <p>“Clear communication and a straightforward partnership process. The support makes day-to-day management much easier.”</p>
+            <div class="reviewer">Verified Partner</div>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <p>“The reporting gives us a better view of campaign performance and helps us make decisions quickly.”</p>
+            <div class="reviewer">Affiliate Partner</div>
+          </article>
+
+          <article class="card review">
+            <div class="stars">★★★★★</div>
+            <p>“Professional communication from the start and useful assistance whenever we need clarification.”</p>
+            <div class="reviewer">Media Partner</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <div class="section-label">Get in touch</div>
+          <h2>Ready to discuss a partnership?</h2>
+          <p>
+            Contact the affiliate team directly for program information, onboarding
+            and partnership opportunities.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:support@betongame.partners">Email the Affiliate Team</a>
+            <a class="btn btn-outline" href="https://t.me/BetOnGame_Affiliate_Updates" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/header.png" alt="BetOnGame Partners">
+          <p>Affiliate partnership information, resources and contact details.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#benefits">Benefits</a>
+          <a href="#earnings">Earnings</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+          <a href="YOUR_TERMS_URL_HERE">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2026 BetOnGame Partners. All rights reserved. 18+.
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie" id="cookie">
+    <p>This website uses essential cookies to provide basic functionality and improve your experience.</p>
+    <button id="acceptCookie">Accept</button>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+
+    menuBtn.addEventListener("click", () => {
+      const open = mobileNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.textContent = open ? "×" : "☰";
+    });
+
+    document.querySelectorAll("#mobileNav a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    const cookie = document.getElementById("cookie");
+    const acceptCookie = document.getElementById("acceptCookie");
+
+    if (localStorage.getItem("betongame_cookie_accepted") === "1") {
+      cookie.style.display = "none";
+    }
+
+    acceptCookie.addEventListener("click", () => {
+      localStorage.setItem("betongame_cookie_accepted", "1");
+      cookie.style.display = "none";
+    });
+  </script>
+</body>
+</html>
